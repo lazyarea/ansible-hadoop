@@ -1,0 +1,2 @@
+export HADOOP_HOME=hadoop_root
+export PATH=$PATH:$HADOOP_HOME/bin

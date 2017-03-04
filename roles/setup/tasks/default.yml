@@ -1,0 +1,34 @@
+- name: setup /etc/default/hadoop
+  command: mv {{tmp_src}}/hadoop  /etc/default/
+- replace: dest=/etc/default/hadoop regexp='hadoop_root' replace='{{hadoop_root}}'
+
+- name: "source /etc/default/hadoop"
+  command: grep "/etc/default/hadoop" {{user_home}}/.bash_profile
+  register: hadoop_result
+  ignore_errors: True
+
+- shell: echo "source /etc/default/hadoop" >> {{user_home}}/.bash_profile
+  when: hadoop_result|failed
+
+- name: setup /etc/default/hbase
+  command: mv {{tmp_src}}/hbase  /etc/default/
+- replace: dest=/etc/default/hbase regexp='hbase_root' replace='{{hbase_root}}'
+
+- name: "source /etc/default/hbase"
+  command: grep "/etc/default/hbase" {{user_home}}/.bash_profile
+  register: hbase_result
+  ignore_errors: True
+
+- shell: echo "source /etc/default/hbase" >> {{user_home}}/.bash_profile
+  when: hbase_result|failed
+
+- name: setup /etc/default/java
+  command: mv {{tmp_src}}/java  /etc/default/
+
+- name: "source /etc/default/java"
+  command: grep "/etc/default/java" {{user_home}}/.bash_profile
+  register: java_result
+  ignore_errors: True
+
+- shell: echo "source /etc/default/java" >> {{user_home}}/.bash_profile
+  when: java_result|failed

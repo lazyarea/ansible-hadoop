@@ -1,0 +1,5 @@
+---
+- include: untar.yml
+- include: default.yml
+#
+# - command: mkdir -p /var/log/hadoop-{{hadoop_ver}}/logs

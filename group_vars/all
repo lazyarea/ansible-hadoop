@@ -1,0 +1,27 @@
+---
+#ansible_ssh_pass: 'secret phrase'
+#ansible_sudo_pass: 'secret phrase'
+
+prefix: /opt/aaa
+files_prefix: opt/aaa
+ansible_tmp: /tmp/ansible_tmp
+
+file_dir: /tmp
+tmp_src: /tmp/src
+
+hadoop_root: /opt/hadoop-{{hadoop_ver}}
+hadoop_ver: 2.7.3
+
+hbase_root: /opt/hbase-{{hbase_ver}}
+hbase_ver: 1.3.0
+
+maven_ver: 3.2.2
+# hbase_ver: 0.98.7-hadoop2
+zk_ver: 3.4.6
+
+
+user: vagrant
+user_home: /home/{{user}}
+#ugroup: hellohello
+
+backup: backup

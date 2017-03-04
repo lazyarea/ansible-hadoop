@@ -1,0 +1,28 @@
+# - debug: msg=" tar {{tmp_src}}/*.gz -C /opt/"
+# - debug: msg="tar zxvf {{tmp_src}}/hadoop-{{hadoop_ver}}.tar.gz -C /opt"
+- name: ディレクトリの存在チェック
+  stat: path=/opt/hadoop-{{hadoop_ver}}
+  register: fm
+  ignore_errors: True
+- name: ディレクトリ削除
+  become: True
+  command: rm -fr /opt/hadoop-{{hadoop_ver}}
+  when: fm.stat.exists
+
+- name: "tar zxvf {{tmp_src}}/hadoop-{{hadoop_ver}}.tar.gz -C /opt"
+  command: tar zxvf {{tmp_src}}/hadoop-{{hadoop_ver}}.tar.gz chdir=/opt
+
+
+
+# - debug: msg="tar zxvf {{tmp_src}}/hbase-{{hbase_ver}}-bin.tar.gz -C /opt"
+- name: ディレクトリの存在チェック
+  stat: path=/opt/hbase-{{hbase_ver}}
+  register: fm
+  ignore_errors: True
+- name: ディレクトリ削除
+  become: True
+  command: rm -fr /opt/hbase-{{hbase_ver}}
+  when: fm.stat.exists
+
+- name: "tar zxvf {{tmp_src}}/hbase-{{hbase_ver}}-bin.tar.gz -C /opt"
+  command: tar zxvf {{tmp_src}}/hbase-{{hbase_ver}}-bin.tar.gz -C /opt

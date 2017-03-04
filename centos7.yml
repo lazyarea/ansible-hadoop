@@ -1,0 +1,14 @@
+---
+
+- hosts: cluster
+  sudo: yes
+  sudo_user: root
+  roles:
+    - commons
+
+- hosts: cluster
+  # connection: local
+  sudo: yes
+  sudo_user: root
+  roles:
+    - setup
