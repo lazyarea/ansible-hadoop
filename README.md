@@ -1,3 +1,4 @@
+```
 -K: sudo password
 -k: user password
 -f: default num = 5
@@ -12,3 +13,4 @@ $ ansible-playbook  -i ./hosts -K ./deploy.xml
 # with ansible.cfg
 #------------------------------------------
 $ ansible-playbook ./deploy.xml
+```
