@@ -1,0 +1,16 @@
+---
+
+- copy: src=etc/default/java dest=/etc/default/
+- lineinfile: dest=/etc/bashrc state=present regexp="\/etc\/default\/java" insertafter=EOF line='source /etc/default/java'
+
+- shell: source /etc/bashrc
+
+#- name: setup jdk
+- command: ls -l /usr/java/default
+  register: result
+  ignore_errors: True
+
+- copy: src=jdk-8u25-linux-x64.rpm dest=/tmp/
+  when: result|failed
+- command: rpm -ivh /tmp/jdk-8u25-linux-x64.rpm
+  when: result|failed

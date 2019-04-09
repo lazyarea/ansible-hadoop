@@ -1,0 +1,45 @@
+---
+- name: install cdh5 packages
+  yum: name={{ item }} state=present
+  with_items:
+  - hadoop-hdfs-namenode
+  - hadoop-0.20-mapreduce-jobtracker
+  - hadoop-client
+
+#- name: copy conf.kya
+- copy: src=etc/hadoop/conf.kya dest=/etc/hadoop/
+- command: alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.kya 20
+
+# sudo -u hdfs hadoop namenode -format
+# service hadoop-hdfs-namenode start
+# service hadoop-hdfs-namenode status
+
+#- name: hdfs
+- command: rm -rf /tmp/hsperfdata_hdfs
+- command: rm -rf /tmp/hadoop
+- command: mkdir /tmp/hadoop
+- command: chown hdfs. /tmp/hadoop
+
+- command: sudo -u hdfs hadoop namenode -format
+- command: /etc/init.d/hadoop-hdfs-namenode start
+  register: result
+  ignore_errors: True
+  name: check MASTER NodeName in conf.kya 
+  when: result|failed
+
+- command: sudo -u hdfs hadoop fs -mkdir /tmp
+- command: sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+- command: sudo -u hdfs hadoop fs -mkdir -p /var/lib/hadoop-hdfs/cache/mapred/mapred/staging
+- command: sudo -u hdfs hadoop fs -chmod 1777 /var/lib/hadoop-hdfs/cache/mapred/mapred/staging
+- command: sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred
+- command: sudo -u hdfs hadoop fs -mkdir -p /tmp/hadoop/mapred/system
+- command: sudo -u hdfs hadoop fs -chown -R mapred /tmp/hadoop/mapred
+
+#- name: mapred
+- command: sudo mkdir -p /tmp/hadoop/mapred
+- command: chown mapred. /tmp/hadoop/mapred
+- command: /etc/init.d/hadoop-0.20-mapreduce-jobtracker start
+  register: result
+  ignore_errors: True
+  name: check jobtracker. can not started. 
+  when: result|failed

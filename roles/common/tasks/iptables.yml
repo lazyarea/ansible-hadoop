@@ -1,0 +1,13 @@
+---
+#- name: add iptables
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="8020"  insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 8020 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="8021"  insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 8021 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50010" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50010 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50020" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50020 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50030" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50030 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50070" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50070 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50075" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50075 -j ACCEPT"
+- lineinfile: dest=/etc/sysconfig/iptables state=present regexp="50090" insertafter="^:OUTPUT " line="-A INPUT -p tcp --dport 50090 -j ACCEPT"
+
+- name: iptables restart
+  command: /etc/init.d/iptables restart

@@ -1,0 +1,13 @@
+---
+- name: install linux packages
+  yum: name={{ item }} state=present
+  with_items:
+  - wget
+  - nano
+  - tree
+  - mlocate
+  - rsync
+
+- name: do updatedb
+  command: updatedb
+

@@ -1,0 +1,7 @@
+---
+- include: linux-pkg.yml
+- include: selinux.yml
+- include: iptables.yml
+- include: cloudera.yml
+- include: java.yml
+

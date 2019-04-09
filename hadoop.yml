@@ -1,0 +1,27 @@
+---
+# This playbook deploys the whole application stack in this site.  
+
+- name: configure and deploy common
+  hosts: all
+  remote_user: ksto
+  sudo: yes
+  sudo_user: root
+  roles:
+    - common
+
+- name: setup cloudera-cdh5.repo 
+  hosts: masters
+  remote_user: ksto
+  sudo: yes
+  sudo_user: root
+  roles:
+    - masters
+
+- name: setup cloudera-cdh5.repo 
+  hosts: slaves
+  remote_user: ksto
+  sudo: yes
+  sudo_user: root
+  roles:
+    - slaves
+

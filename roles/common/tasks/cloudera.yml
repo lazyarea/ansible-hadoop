@@ -1,0 +1,8 @@
+---
+- name: get cloudera-cdh5.repo
+#  command: ls -al /etc/yum.repos.d/cloudera-cdh5.repo
+#  register: result
+#  ignore_errors: True
+
+  command: wget http://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/cloudera-cdh5.repo -P /etc/yum.repos.d/
+#  when: result|failed
