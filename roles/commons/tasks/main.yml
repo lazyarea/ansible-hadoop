@@ -1,5 +1,0 @@
----
-- include: rsync.yml
-- include: pkg.yml
-- include: sysctl.yml
-- include: ssh.yml

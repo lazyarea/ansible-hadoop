@@ -1,2 +1,0 @@
-export HBASE_HOME=hbase_root
-export PATH=$PATH:$HBASE_HOME/bin

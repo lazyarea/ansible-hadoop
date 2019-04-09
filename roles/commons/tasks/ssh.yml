@@ -1,9 +1,0 @@
-- name: id_rsa
-  command: mv {{tmp_src}}/id_rsa {{user_home}}/.ssh/
-  command: chown {{user}}. {{user_home}}/.ssh/id_rsa
-  command: chmod 600 {{user_home}}/.ssh/id_rsa
-  command: touch {{user_home}}/.ssh/config
-- shell: echo 'StrictHostKeyChecking no' > {{user_home}}/.ssh/config
-- command: chown {{user}}. {{user_home}}/.ssh/config
-- command: chmod 600 {{user_home}}/.ssh/config
-- debug: msg="echo 'StrictHostKeyChecking no' >> {{user_home}}/.ssh/config"

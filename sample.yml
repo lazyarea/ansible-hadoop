@@ -1,6 +1,0 @@
----
-- hosts: test
-  tasks:
-    - name: setup authorized_keys
-      authorized_key: user=hellohello
-                      key="{{ lookup('file', '/path/to/.ssh/id_rsa') }}"
